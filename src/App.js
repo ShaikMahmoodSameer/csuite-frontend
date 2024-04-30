@@ -6,7 +6,6 @@ import "./App.css";
 
 import Home from "./Pages/Home";
 import { Footer } from "./Components/Footer";
-import { Register } from "./Pages/Register";
 
 function App() {
   axios.defaults.withCredentials = true;
@@ -35,6 +34,8 @@ function App() {
     },
   });
 
+  useEffect(() => { console.log(checkOutFormData); }, [checkOutFormData])
+
   useEffect(() => {
     axios.get(`${BASE_URL}/user`).then((res) => {
         if (res.data.Status === "ok") {
@@ -50,18 +51,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home auth={auth} userId={userId} />} />
-          <Route
-            path="/register"
-            element={
-              <Register
-                auth={auth}
-                userId={userId}
-                setUserId={setUserId}
-                checkOutFormData={checkOutFormData}
-                setCheckOutFormData={setCheckOutFormData}
-              />
-            }
-          />
         </Routes>
         <Footer />
       </Router>
