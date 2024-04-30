@@ -9,10 +9,10 @@ import { Footer } from "./Components/Footer";
 
 function App() {
   axios.defaults.withCredentials = true;
-  const [auth, setAuth] = useState(false);
-  const [userId, setUserId] = useState("");
+  const [auth] = useState(false);
+  const [userId] = useState("");
 
-  const [checkOutFormData, setCheckOutFormData] = useState({
+  const [checkOutFormData] = useState({
     userId: "",
     memberDetails: {
       name: "",
@@ -37,12 +37,13 @@ function App() {
   useEffect(() => { console.log(checkOutFormData); }, [checkOutFormData])
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/user`).then((res) => {
-        if (res.data.Status === "ok") {
-          setAuth(true);
-          setUserId(res.data.userId);
-          setCheckOutFormData((prevData) => ({ ...prevData, userId: res.data.userId }));
-        } else { setAuth(false); }
+    axios.get(`${BASE_URL}`).then((res) => {
+        console.log(res);
+        // if (res.data.Status === "ok") {
+        //   setAuth(true);
+        //   setUserId(res.data.userId);
+        //   setCheckOutFormData((prevData) => ({ ...prevData, userId: res.data.userId }));
+        // } else { setAuth(false); }
       }).catch((err) => { console.error("Axios error:", err) });
   }, []);
 
