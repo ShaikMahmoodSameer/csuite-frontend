@@ -7,18 +7,11 @@ import "./App.css";
 import Home from "./Pages/Home";
 import { Footer } from "./Components/Footer";
 import { Register } from "./Pages/Register";
-import TestPage from "./Pages/TestPage";
-import Dashboard from "./Pages/Dashboard";
-import TicketInfoPopup from "./Components/Popups/TicketInfoPopup";
 
 function App() {
   axios.defaults.withCredentials = true;
   const [auth, setAuth] = useState(false);
   const [userId, setUserId] = useState("");
-
-  // popups
-  const [TicketInfoPopupShow, setTicketInfoPopupShow] = useState(false);
-  // popups
 
   const [checkOutFormData, setCheckOutFormData] = useState({
     userId: "",
@@ -69,24 +62,9 @@ function App() {
               />
             }
           />
-          <Route
-            path="/dashboard"
-            element={
-              <Dashboard setTicketInfoPopupShow={setTicketInfoPopupShow} />
-            }
-          />
-          <Route path="/test-page" element={<TestPage />} />
         </Routes>
-
-        {/* popups */}
-        <TicketInfoPopup
-          show={TicketInfoPopupShow}
-          onHide={() => setTicketInfoPopupShow(false)}
-        />
-
         <Footer />
       </Router>
-      {/* <img className="bgImg" src="/images/bg_img.png" alt="" /> */}
     </div>
   );
 }
